@@ -30,22 +30,22 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
+                print('Login button pressed');
                 final username = usernameController.text;
                 final password = passwordController.text;
+                print('Username: $username, Password: $password');
                 final success = await authController.login(username, password);
+                print('Login success: $success');
                 if (success) {
-                  // Se o login for bem-sucedido, navegue para a próxima tela
-                  Get.to(Home());
-                  // Exiba uma mensagem de sucesso
+                  Get.off(Home());
                   Get.snackbar('Success', 'Login successful');
                 } else {
-                  // Se o login falhar, exiba uma mensagem de erro
-                  Get.snackbar('Error', 'Invalid username or password');
+                  Get.snackbar('Error', 'Invalid username or password',
+                      snackPosition: SnackPosition.BOTTOM);
                 }
               },
-  child: Text('Login'),
-),
-
+              child: Text('Login'),
+            ),
             TextButton(
               onPressed: () {
                 Get.to(RegisterScreen());

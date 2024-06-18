@@ -8,4 +8,7 @@ abstract class UserDao {
 
   @insert
   Future<void> insertUser(User user);
+
+  @Query('SELECT * FROM User')
+  Future<List<User>> findAllUsers();
 }

@@ -29,9 +29,14 @@ class RegisterScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
+                print('Register button pressed');
                 final username = usernameController.text;
                 final password = passwordController.text;
+                print('Username: $username, Password: $password');
                 await authController.register(username, password);
+                print('User registered');
+                Get.snackbar('Success', 'Registration successful',
+                    snackPosition: SnackPosition.BOTTOM);
                 Get.off(LoginScreen());
               },
               child: Text('Register'),

@@ -186,6 +186,13 @@ class _$UserDao extends UserDao {
   }
 
   @override
+  Future<List<User>> findAllUsers() async {
+    return _queryAdapter.queryList('SELECT * FROM User',
+        mapper: (Map<String, Object?> row) => User(row['id'] as int?,
+            row['username'] as String, row['password'] as String));
+  }
+
+  @override
   Future<void> insertUser(User user) async {
     await _userInsertionAdapter.insert(user, OnConflictStrategy.abort);
   }
